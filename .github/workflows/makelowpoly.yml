@@ -10,6 +10,10 @@ on:
         description: 'Target number of faces for the low poly model'
         required: false
         default: 7500
+      textureresolution:
+        description: 'Texture resolution for the low poly model'
+        required: false
+        default: 2048
 
 jobs:
   build:
@@ -45,7 +49,7 @@ jobs:
 
       - name: Convert to Low Poly
         run: |
-          python lowpoly.py ${{ github.event.inputs.filename }} --target-faces ${{ github.event.inputs.targetfaces }}
+          python lowpoly.py ${{ github.event.inputs.filename }} --target-faces ${{ github.event.inputs.targetfaces }} --texture-resolution ${{ github.event.inputs.textureresolution }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
